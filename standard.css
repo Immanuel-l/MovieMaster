@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: #ecf7ff;
+}
+
+body {
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #222222;
+}
+
+.wrapper {
+    max-width: 1200px;
+}
+
+.wrapper .carousel {
+    font-size: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.carousel img {
+    height: 340px;
+    object-fit: cover;
+    margin-left: 14px;
+    width: calc(100% / 3);
+}
+
+.carousel img:first-child {
+    margin-left: 0px;
+}
