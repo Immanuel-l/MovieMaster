@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-    color: #ecf7ff;
 }
 
 body {
@@ -12,11 +11,51 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: #222222;
+    background: #010712;
 }
 
+a {
+    text-decoration: none;
+}
+
+/*************************************NAV*******************************************/
+header {
+    position: fixed;
+    top: 0;
+    height: 7vh;
+    width: 100%;
+    border-bottom: 3px #070b16 solid;
+}
+
+header nav {
+    margin-left: -40px;
+    line-height: 7vh;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+}
+
+header nav ul li {
+    font-size: 18px;
+    color: #ecf7ff;
+    list-style-type: none;
+}
+
+header nav ul li:hover {
+    color: #223f99;
+    transition: 0.4s 0.15s;
+}
+
+
+
+/*******************************IMG CAROUSEL****************************************/
+
 .wrapper {
-    max-width: 1200px;
+    max-width: 1400px;
     position: relative;
 }
 
@@ -28,7 +67,8 @@ body {
     position: absolute;
     font-size: 1.5rem;
     text-align: center;
-    background: #657793;
+    color: #ecf7ff;
+    background: #223f99;
     border-radius: 50%;
     line-height: 40px;
     transform: translateY(-50%);
@@ -61,7 +101,7 @@ body {
 }
 
 .carousel img {
-    height: 340px;
+    height: 280px;
     object-fit: cover;
     margin-left: 14px;
     width: calc(100% / 3);
@@ -72,6 +112,10 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+    .nav-text {
+        display: none;
+    }
+
     .carousel img {
         width: calc(100% / 2);
     }
