@@ -101,10 +101,10 @@ header nav ul li:hover {
 }
 
 .carousel img {
-    height: 280px;
+    height: 250px;
     object-fit: cover;
     margin-left: 14px;
-    width: calc(100% / 3);
+    width: calc(100% / 10);
 }
 
 .carousel img:first-child {

@@ -1,3 +1,30 @@
+/************************** TMDB API ******************/
+
+const API_KEY = "api_key=b91afbd28e2bdc66c587c96ade03deb9";
+const BASE_URL = "https://api.themoviedb.org/3";
+const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
+const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+getMovies(API_URL);
+
+function getMovies(url) {
+    fetch(url).then(res => res.json()).then(data => {
+        showMovies(data.results);
+    })
+}
+
+function showMovies(data) {
+    data.forEach(movie => {
+        const {title, poster_path, vote_average, overview} = movie;
+
+        let carousel1 = document.getElementById("carousel1");
+        let img = document.createElement("img");
+        img.src = `${IMG_URL}${poster_path}`;
+        carousel1.appendChild(img);
+    })
+}
+
+/************************** Image Carousel ******************/
 const carousel = document.querySelector(".carousel");
 const firstImg = carousel.querySelectorAll("img")[0];
 const arrowIcons = document.querySelectorAll(".wrapper i");
@@ -26,9 +53,9 @@ arrowIcons.forEach(icon => {
         let firstImgWidth = firstImg.clientWidth + 14; //getting first img width & adding 14 margin value
         // if clicked icon is left, recduce width value from the carousel scroll left else add to it
         if(icon.id == "left") {
-            carousel.scrollLeft -= firstImgWidth;
+            carousel.scrollLeft -= firstImgWidth*3;
          } else {
-                carousel.scrollLeft += firstImgWidth;
+                carousel.scrollLeft += firstImgWidth*3;
             }
         
         setTimeout( () => showHideIcons(), 60); // calling showHideIcons after 60ms;
@@ -42,7 +69,7 @@ const autoSlide = () => {
     positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
     let firstImgWidth = firstImg.clientWidth + 14;
     // getting differnce value that needs to add or reduce from carousel left to take middle img center
-    let valDifference = firstImgWidth - positionDiff;
+    let valDifference = firstImgWidth*3 - positionDiff;
 
     if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
         return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
