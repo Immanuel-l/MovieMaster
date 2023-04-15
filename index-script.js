@@ -1,33 +1,40 @@
+    const carousel = document.querySelector(".carousel");
+    let firstImg;
+    const arrowIcons = document.querySelectorAll(".wrapper i");
 /************************** TMDB API ******************/
 
-const API_KEY = "api_key=b91afbd28e2bdc66c587c96ade03deb9";
-const BASE_URL = "https://api.themoviedb.org/3";
-const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+    const API_KEY = "api_key=b91afbd28e2bdc66c587c96ade03deb9";
+    const BASE_URL = "https://api.themoviedb.org/3";
+    const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
+    const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-getMovies(API_URL);
+    function getMovies(url) {
+        fetch(url).then(res => res.json()).then(data => {
+            showMovies(data.results);
+            console.log(data.results);
+        })
+    }
 
-function getMovies(url) {
-    fetch(url).then(res => res.json()).then(data => {
-        showMovies(data.results);
-    })
-}
+    function showMovies(data) {
+        data.forEach((movie, index) => {
+            const {title, poster_path, vote_average, overview, id} = movie;
+            let img = document.createElement("img");
+            img.src = IMG_URL + `${poster_path}`;
+            let a = document.createElement("a");
+            a.href = "/result.html?id=" + `${id}`;
+            carousel.appendChild(a);
+            a.appendChild(img);
 
-function showMovies(data) {
-    data.forEach(movie => {
-        const {title, poster_path, vote_average, overview} = movie;
+            if(index === 0) {
+                firstImg = img;
+            }
+        })
+    }
 
-        let carousel1 = document.getElementById("carousel1");
-        let img = document.createElement("img");
-        img.src = `${IMG_URL}${poster_path}`;
-        carousel1.appendChild(img);
-    })
-}
+    getMovies(API_URL);
+
 
 /************************** Image Carousel ******************/
-const carousel = document.querySelector(".carousel");
-const firstImg = carousel.querySelectorAll("img")[0];
-const arrowIcons = document.querySelectorAll(".wrapper i");
 
 let isDragStart= false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
 
@@ -50,12 +57,12 @@ const showHideIcons = () => {
 
 arrowIcons.forEach(icon => {
     icon.addEventListener("click", () => {
-        let firstImgWidth = firstImg.clientWidth + 14; //getting first img width & adding 14 margin value
+        let firstImgWidth = firstImg.clientWidth + 48; //getting first img width & adding 18 margin value
         // if clicked icon is left, recduce width value from the carousel scroll left else add to it
         if(icon.id == "left") {
-            carousel.scrollLeft -= firstImgWidth*3;
+            carousel.scrollLeft -= firstImgWidth*5;
          } else {
-                carousel.scrollLeft += firstImgWidth*3;
+                carousel.scrollLeft += firstImgWidth*5;
             }
         
         setTimeout( () => showHideIcons(), 60); // calling showHideIcons after 60ms;
@@ -67,9 +74,9 @@ const autoSlide = () => {
     if(carousel.scrollLeft == (carousel.scrollWidth - carousel.clientWidth)) return;
 
     positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
-    let firstImgWidth = firstImg.clientWidth + 14;
+    let firstImgWidth = firstImg.clientWidth + 48;
     // getting differnce value that needs to add or reduce from carousel left to take middle img center
-    let valDifference = firstImgWidth*3 - positionDiff;
+    let valDifference = firstImgWidth*5 - positionDiff;
 
     if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
         return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;

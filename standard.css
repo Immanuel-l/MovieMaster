@@ -6,16 +6,27 @@
 }
 
 body {
-    display: flex;
-    padding: 0 35px;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
     background: #010712;
 }
 
 a {
     text-decoration: none;
+}
+
+h1 {
+    color: #ecf7ff;
+    font-size: 30px;
+}
+
+h2 {
+    color: #ecf7ff;
+    font-size: 18px;
+}
+
+h3 {
+    color: #ecf7ff;
+    font-size: 25px;
+    margin-bottom: 25px;
 }
 
 /*************************************NAV*******************************************/
@@ -55,8 +66,8 @@ header nav ul li:hover {
 /*******************************IMG CAROUSEL****************************************/
 
 .wrapper {
-    max-width: 1400px;
     position: relative;
+    max-width: 1400px;
 }
 
 .wrapper i {
@@ -100,11 +111,14 @@ header nav ul li:hover {
     pointer-events: none;
 }
 
+.carousel a {
+    margin-left: 47px;
+}
+
 .carousel img {
-    height: 250px;
+    height: 400px;
     object-fit: cover;
-    margin-left: 14px;
-    width: calc(100% / 10);
+    width: calc(100% / 6);
 }
 
 .carousel img:first-child {
