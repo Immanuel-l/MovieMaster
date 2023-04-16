@@ -21,7 +21,7 @@
             let img = document.createElement("img");
             img.src = IMG_URL + `${poster_path}`;
             let a = document.createElement("a");
-            a.href = "/result.html?id=" + `${id}`;
+            a.href = "./result.html?id=" + `${id}`;
             carousel.appendChild(a);
             a.appendChild(img);
 
