@@ -1,12 +1,16 @@
     const carousel = document.querySelector(".carousel");
+    const carousel2 = document.querySelector(".carousel2");
     let firstImg;
     const arrowIcons = document.querySelectorAll(".wrapper i");
 /************************** TMDB API ******************/
 
     const API_KEY = "api_key=b91afbd28e2bdc66c587c96ade03deb9";
     const BASE_URL = "https://api.themoviedb.org/3";
-    const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY + "&language=de-DE";
+    const MOVIE_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY + "&language=de-DE";
+    const TV_URL = BASE_URL + "/discover/tv?sort_by=popularity.desc&" + API_KEY + "&language=de-DE&with_original_language=en";
     const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+    console.log(MOVIE_URL);
 
     function getMovies(url) {
         fetch(url).then(res => res.json()).then(data => {
@@ -15,13 +19,20 @@
         })
     }
 
+    function getTV(url) {
+        fetch(url).then(res => res.json()).then(data => {
+            showTV(data.results);
+            console.log(data.results);
+        })
+    }
+
     function showMovies(data) {
         data.forEach((movie, index) => {
-            const {title, poster_path, vote_average, overview, id} = movie;
+            const {poster_path, id} = movie;
             let img = document.createElement("img");
             img.src = IMG_URL + `${poster_path}`;
             let a = document.createElement("a");
-            a.href = "./result.html?id=" + `${id}`;
+            a.href = "./result.html?movie=1&id=" + `${id}`;
             carousel.appendChild(a);
             a.appendChild(img);
 
@@ -31,7 +42,26 @@
         })
     }
 
-    getMovies(API_URL);
+    function showTV(data) {
+        data.forEach((movie, index) => {
+            const {poster_path, id} = movie;
+            let img = document.createElement("img");
+            img.src = IMG_URL + `${poster_path}`;
+            let a = document.createElement("a");
+            a.href = "./result.html?tv=1&id=" + `${id}`;
+            carousel2.appendChild(a);
+            a.appendChild(img);
+
+            if(index === 0) {
+                firstImg = img;
+            }
+        })
+    }
+
+    
+
+    getMovies(MOVIE_URL);
+    getTV(TV_URL);
 
 
 /************************** Image Carousel ******************/

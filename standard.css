@@ -36,6 +36,8 @@ header {
     height: 7vh;
     width: 100%;
     border-bottom: 3px #070b16 solid;
+    background: #010712;
+    z-index: 1;
 }
 
 header nav {
@@ -65,12 +67,15 @@ header nav ul li:hover {
 
 /*******************************IMG CAROUSEL****************************************/
 
-.wrapper {
+.wrapper, .wrapper2 {
     position: relative;
     max-width: 1400px;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-bottom: 50px;
 }
 
-.wrapper i {
+.wrapper i, .wrapper2 i {
     top: 50%;
     height: 40px;
     width: 40px;
@@ -85,16 +90,16 @@ header nav ul li:hover {
     transform: translateY(-50%);
 }
 
-.wrapper i:first-child {
+.wrapper i:first-child, .wrapper2 i:first-child {
     left: -23px;;
     display: none;
 }
 
-.wrapper i:last-child {
+.wrapper i:last-child, .wrapper2 i:last-child {
     right: -23px;;
 }
 
-.wrapper .carousel {
+.wrapper .carousel, .wrapper2 .carousel2 {
     font-size: 0px;
     cursor: pointer;
     overflow: hidden;
@@ -102,26 +107,26 @@ header nav ul li:hover {
     scroll-behavior: smooth;
 }
 
-.carousel.dragging {
+.carousel.dragging, .carousel2.dragging {
     cursor: grab;
     scroll-behavior: auto;
 }
 
-.carousel.dragging img {
+.carousel.dragging img, .carousel2.dragging img {
     pointer-events: none;
 }
 
-.carousel a {
+.carousel a, .carousel2 a {
     margin-left: 47px;
 }
 
-.carousel img {
+.carousel img, .carousel2 img {
     height: 400px;
     object-fit: cover;
     width: calc(100% / 6);
 }
 
-.carousel img:first-child {
+.carousel img:first-child, .carousel2 img:first-child {
     margin-left: 0px;
 }
 
@@ -130,13 +135,13 @@ header nav ul li:hover {
         display: none;
     }
 
-    .carousel img {
+    .carousel img, .carousel2 img {
         width: calc(100% / 2);
     }
 }
 
 @media screen and (max-width: 550px) {
-    .carousel img {
+    .carousel img, .carousel2 img {
         width: 100%;
     }
 }
